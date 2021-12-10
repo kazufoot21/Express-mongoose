@@ -24,7 +24,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
-const categories = ['果物', '野菜', '乳製品', 'きのこ類'];
+const categories = ['果物', '野菜', '乳製品'];
 
 app.get('/products', async (req, res) => {
   const products = await Product.find({});
@@ -60,6 +60,12 @@ app.put('/products/:id', async (req, res) => {
     new: true,
   });
   res.redirect(`/products/${product._id}`);
+});
+
+app.delete('/products/:id', async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findByIdAndDelete(id);
+  res.redirect('/products');
 });
 
 app.listen(3000, () => {
