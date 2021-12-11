@@ -10,7 +10,12 @@
     <h1><%= product.name %></h1>
     <ul>
       <li>Price : <%= product.price %>円</li>
-      <li>Category : <%= product.category %></li>
+      <li>
+        Category :
+        <a href="/products?category=<%= product.category %>"
+          ><%= product.category %></a
+        >
+      </li>
     </ul>
     <a href="/products">products list</a><br />
     <a href="/products/<%= product._id %>/edit">Edit</a>
